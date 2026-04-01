@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Algoritmos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+  </div>
+  <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+    <div class="subtitle">COMPARADOR DE ALGORITMOS DE BUSCA</div>
+  </div>
+</header>
+
+<div class="app">
+  <div class="panel left-panel">
+
+    <div class="panel-title">ENTRADA DE DADOS</div>
+
+    <div class="form-section">
+      <label class="form-label">Arquivos .txt</label>
+      <div class="file-drop" id="fileDrop">
+        <input type="file" id="fileInput" accept=".txt" multiple>
+        <div class="file-drop-icon">⬆</div>
+        <p>Arraste arquivos .txt aqui</p>
+        <p class="hint">ou clique para selecionar</p>
+      </div>
+      <div class="file-chips" id="fileChips"></div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">Texto (edite diretamente)</label>
+      <textarea class="code-input" id="textInput" rows="6"
+        placeholder="Cole ou escreva o texto aqui..."></textarea>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">Padrão de busca (pattern)</label>
+      <input type="text" class="text-input" id="patternInput" value="the" placeholder="Digite o padrão...">
+      <div style="margin-top:6px;font-size:10px;color:var(--text-dim)">
+        <span id="patternInfo"></span>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">Algoritmo</label>
+      <div class="algo-grid">
+        <div class="algo-btn selected" data-algo="naive">
+          <span class="algo-name">NAIVE</span>
+          <span class="algo-tag">O(n·m)</span>
+        </div>
+        <div class="algo-btn" data-algo="rk">
+          <span class="algo-name">RABIN-KARP</span>
+          <span class="algo-tag">O(n+m) avg</span>
+        </div>
+        <div class="algo-btn" data-algo="kmp">
+          <span class="algo-name">KMP</span>
+          <span class="algo-tag">O(n+m)</span>
+        </div>
+        <div class="algo-btn" data-algo="bm">
+          <span class="algo-name">BOYER-MOORE</span>
+          <span class="algo-tag">O(n/m) best</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="btn-row" style="margin-bottom:8px">
+        <button class="btn btn-primary" id="btnRun">▶ EXECUTAR</button>
+        <button class="btn btn-secondary" id="btnStep">⏯ PASSO A PASSO</button>
+      </div>
+      <button class="btn-compare" id="btnCompare">⟳ COMPARAR TODOS OS ALGORITMOS</button>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">Complexidade Teórica</label>
+      <div id="complexityRef" style="font-size:11px;line-height:2;color:var(--text-mid)">
+        <div>Selecione um algoritmo acima</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right-panel" id="rightPanel">
+
+    <div class="tabs">
+      <div class="tab active" data-tab="viz">Visualização</div>
+      <div class="tab" data-tab="metrics">Métricas</div>
+      <div class="tab" data-tab="compare">Comparação</div>
+    </div>
+
+    <div class="tab-content active" id="tab-viz">
+      <div class="viz-area" id="vizArea">
+        <div class="viz-empty" id="vizEmpty">
+          <div class="big-icon">⌕</div>
+          <div>Execute um algoritmo para visualizar</div>
+          <div style="font-size:10px;opacity:0.5">Configure o texto, o padrão e pressione EXECUTAR ou PASSO A PASSO</div>
+        </div>
+        <div id="stepControls" style="display:none">
+          <div class="step-controls">
+            <button class="step-nav-btn" id="btnFirst">⏮</button>
+            <button class="step-nav-btn" id="btnPrev">◀</button>
+            <span class="step-counter" id="stepCounter">Passo 0 / 0</span>
+            <button class="step-nav-btn" id="btnNext">▶</button>
+            <button class="step-nav-btn" id="btnLast">⏭</button>
+            <button class="autoplay-btn" id="btnAutoplay">▶ AUTO</button>
+            <div class="speed-wrap">
+              <span>Vel:</span>
+              <input type="range" id="speedSlider" min="100" max="1500" value="700" step="100">
+            </div>
+          </div>
+          <div class="step-desc" id="stepDesc">-</div>
+        </div>
+        <div id="textVizSection" style="display:none">
+          <div class="text-display-wrap">
+            <div class="text-display-label">TEXTO <span id="textLengthLabel"></span></div>
+            <div class="text-chars" id="textChars"></div>
+            <div class="scroll-hint">← scroll horizontal →</div>
+          </div>
+          <div class="text-display-wrap">
+            <div class="text-display-label">PADRÃO <span id="patternLengthLabel"></span></div>
+            <div class="pattern-display" id="patternChars"></div>
+          </div>
+          <div class="aux-section" id="auxSection"></div>
+          <div class="matches-section" id="matchesSection"></div>
+          <div class="log-area" id="logArea"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-metrics">
+      <div id="metricsEmpty" class="viz-empty" style="min-height:200px">
+        <div class="big-icon">📊</div>
+        <div>Execute um algoritmo para ver as métricas</div>
+      </div>
+      <div id="metricsContent" style="display:none">
+        <div class="metrics-grid" id="metricsGrid"></div>
+        <div class="complexity-table" id="complexityTableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Complexidade</th>
+                <th>Melhor Caso</th>
+                <th>Caso Médio</th>
+                <th>Pior Caso</th>
+                <th>Espaço</th>
+              </tr>
+            </thead>
+            <tbody id="complexityTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-compare">
+      <div id="compareEmpty" class="viz-empty" style="min-height:200px">
+        <div class="big-icon">⟳</div>
+        <div>Pressione "Comparar Todos" para ver a análise</div>
+      </div>
+      <div class="compare-area" id="compareContent" style="display:none">
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:12px;margin-bottom:16px;font-size:11px;color:var(--text-dim)">
+          <span style="color:var(--green)">ℹ Informação:</span> Os valores de <b>comparações</b> são determinísticos (sempre iguais). 
+          Os valores de <b>tempo (µs)</b> podem variar por fatores do sistema. Se clicar 2× com mesmos dados, tempo pode ser maior/menor.
+        </div>
+        <div class="compare-grid" id="compareGrid"></div>
+        <div class="bar-chart">
+          <div class="bar-chart-title">Comparações realizadas (menos = melhor) 📊</div>
+          <div id="comparisonsChart"></div>
+        </div>
+        <div class="bar-chart" style="margin-top:16px">
+          <div class="bar-chart-title">Tempo de execução em µs (menos = melhor) ⏱ <span style="font-size:10px;opacity:0.7">[varia por sistema]</span></div>
+          <div id="timeChart"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
