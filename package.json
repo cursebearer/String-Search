@@ -1,0 +1,32 @@
+{
+  "name": "string-search-observability",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Comparador de algoritmos de busca em string com observabilidade (OpenTelemetry)",
+  "scripts": {
+    "start": "node --import ./server/tracing.js server/index.js",
+    "dev": "node --watch --import ./server/tracing.js server/index.js",
+    "start:no-otel": "node server/index.js",
+    "load-test": "node scripts/load-test.js",
+    "fetch-corpus": "node scripts/fetch-corpus.js"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.52.0",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.55.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.55.0",
+    "@opentelemetry/resources": "^1.28.0",
+    "@opentelemetry/sdk-metrics": "^1.28.0",
+    "@opentelemetry/sdk-node": "^0.55.0",
+    "@opentelemetry/sdk-trace-base": "^1.28.0",
+    "@opentelemetry/semantic-conventions": "^1.28.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "pino": "^9.5.0",
+    "pino-pretty": "^13.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
