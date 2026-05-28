@@ -1,8 +1,8 @@
 # Relatório de Uso de IA — Etapa 2
 
 > **Equipe:** Rafael e Lucas
-> **Disciplina:** [preencher]
-> **Data:** [preencher]
+> **Disciplina:** Algoritmos Avancados 
+> **Data:** 27/05/2026
 
 ---
 
