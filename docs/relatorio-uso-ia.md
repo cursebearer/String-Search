@@ -37,7 +37,6 @@ Com a arquitetura decidida, a IA gerou:
 - Decisões de escopo e prioridades (o que entregar)
 - Escolha de quais algoritmos comparar (definido na etapa 1)
 - Validação manual no Jaeger/Grafana após subir a stack
-- Gravação do vídeo de apresentação
 - Análise comparativa teórico vs prático no relatório final
 
 ## Como validamos as saídas da IA
