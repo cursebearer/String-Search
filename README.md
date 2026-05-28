@@ -1,16 +1,18 @@
 # String Search — Etapa 2 (Observabilidade)
 
+> **Equipe:** Rafael Pavesi dos Passos e Lucas Warmling
+> **Disciplina:** Algoritmos Avancados 
+> **Data:** 27/05/2026
+
+---
+
 Comparador interativo dos algoritmos **Naive, Rabin-Karp, KMP e Boyer-Moore**, agora com backend Node.js, instrumentação **OpenTelemetry** e stack completa de observabilidade (Jaeger + Prometheus + Grafana).
 
 > Etapa 1 entregou a corretude algorítmica + visualização. Esta etapa adiciona engenharia de software, padrões de projeto, e observabilidade ponta a ponta.
 
 ---
 
-> **Equipe:** Rafael e Lucas
-> **Disciplina:** Algoritmos Avancados 
-> **Data:** 27/05/2026
 
----
 
 ## Stack
 
