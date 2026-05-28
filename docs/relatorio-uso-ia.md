@@ -1,6 +1,6 @@
 # Relatório de Uso de IA — Etapa 2
 
-> **Equipe:** Rafael e Lucas
+> **Equipe:** Rafael Pavesi dos Passos e Lucas Warmling
 > **Disciplina:** Algoritmos Avancados 
 > **Data:** 27/05/2026
 
