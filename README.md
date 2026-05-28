@@ -6,6 +6,12 @@ Comparador interativo dos algoritmos **Naive, Rabin-Karp, KMP e Boyer-Moore**, a
 
 ---
 
+> **Equipe:** Rafael e Lucas
+> **Disciplina:** Algoritmos Avancados 
+> **Data:** 27/05/2026
+
+---
+
 ## Stack
 
 | Camada | Tecnologia |
